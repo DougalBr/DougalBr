@@ -4,6 +4,10 @@
 <html>
   <head>
     <title>1st Demo Web Page</title>
+	  
+<script src="../dist/leaflet.customsearchbox.min.js"></script>
+<link href="../dist/searchbox.min.css" rel="stylesheet" />
+	  
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
@@ -27,20 +31,20 @@
 	    marker.bindPopup("<img style='width: 200px' src='maxresdefault.jpg'><p><b>C Block</b></p><br>Engineering");
 	    //marker.bindPopup("<b>C Block</b><br>T-Level Digital").openPopup();
 
-	    }).addTo(mymap);
+    }).addTo(mymap);
 	    
 	       var circle = L.circle([51.3, -2.11], {
-    color: 'Green',
-    fillColor: '#1fe04a',
-    fillOpacity: 0.5,
-    radius: 500
+               color: 'Green',
+               fillColor: '#1fe04a',
+               fillOpacity: 0.5,
+               radius: 500
 		    
 	    
 	    // Create a new map with a fullscreen button:
 	    
 
 }).addTo(mymap);
-var mymap = new L.Map('map', {
+	      var mymap = new L.Map('map', {
     fullscreenControl: true,
     // OR
     fullscreenControl: {
@@ -52,6 +56,7 @@ var mymap = new L.Map('map', {
 map.addControl(new L.Control.Fullscreen());
 	    map.isFullscreen() // Is the map fullscreen?
 map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
+	    
 
 // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
 map.on('fullscreenchange', function () {
@@ -67,6 +72,41 @@ map.on('fullscreenchange', function () {
         'true': 'Exit Fullscreen'
     }
 }));
+	     <script>
+     $(document).ready(function () {
+        
+        var map = L.map('map').setView([51.505, -0.09], 5);
+        map.zoomControl.setPosition('topright');
+        map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {attribution:'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'}
+            ));
+	    
+        var searchboxControl=createSearchboxControl();
+        var control = new searchboxControl({
+            sidebarTitleText: 'Header',
+            sidebarMenuItems: {
+                Items: [
+                    { type: "link", name: "Link 1 (github.com)", href: "http://github.com", icon: "icon-local-carwash" },
+                    { type: "link", name: "Link 2 (google.com)", href: "http://google.com", icon: "icon-cloudy" },
+                    { type: "button", name: "Button 1", onclick: "alert('button 1 clicked !')", icon: "icon-potrait" },
+                    { type: "button", name: "Button 2", onclick: "button2_click();", icon: "icon-local-dining" },
+                    { type: "link", name: "Link 3 (stackoverflow.com)", href: 'http://stackoverflow.com', icon: "icon-bike" },
+                ]
+            }
+        });
+        control._searchfunctionCallBack = function (searchkeywords)
+        {
+            if (!searchkeywords) {
+                searchkeywords = "The search call back is clicked !!"
+            }
+            alert(searchkeywords);
+        }
+        map.addControl(control);
+    });
+    
+    function button2_click()
+    {
+        alert('button 2 clicked !!!');
 	    
        
     </script>
