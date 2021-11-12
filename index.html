@@ -26,12 +26,17 @@
 	    var marker1 = L.marker([51.3, -2.4334]).addTo(mymap);
 	    marker.bindPopup("<img style='width: 200px' src='maxresdefault.jpg'><p><b>C Block</b></p><br>Engineering");
 	    //marker.bindPopup("<b>C Block</b><br>T-Level Digital").openPopup();
-	    // Create a new map with a fullscreen button:
-	    var circle = L.circle([51.3, -2.11], {
+	    
+	       var circle = L.circle([51.3, -2.11], {
     color: 'Green',
     fillColor: '#1fe04a',
     fillOpacity: 0.5,
     radius: 500
+		    
+	    
+	    // Create a new map with a fullscreen button:
+	    
+
 }).addTo(mymap);
 var mymap = new L.Map('map', {
     fullscreenControl: true,
